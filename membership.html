@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="img/fav.png">
+    <meta name="author" content="codepixer">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta charset="UTF-8">
+    <title>Membership</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        #membership-form {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 400px;
+    margin: auto;
+}
+
+.form-header {
+    background-color: #88d200;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.form-body {
+    padding: 30px;
+}
+
+.form-body input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-body button {
+    /* background-color: #0888e3; */
+    background-color: #88d200;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: calc(100% - 20px);
+}
+
+.form-body button:hover {
+    background-color: #45a049;
+}
+
+#member-info {
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: center;
+}
+    </style>
+</head>
+
+<body>
+
+    <div id="membership-form">
+        <div class="form-header bg-info">
+            <h2>Membership Registration</h2>
+        </div>
+        <div class="form-body">
+            <form id="registration-form"
+                style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 300px;">
+
+                <input type="text" id="firstName" placeholder="firstName" required>
+                <input type="text" id="lastName" placeholder="lastName" required>
+                <input type="text" id="email" placeholder="email" required>
+                <input type="password" id="password" placeholder="password" required>
+
+                <button type="button" onclick="saveMembershipData()">Register</button>
+
+            </form>
+            <div id="member-info"></div>
+        </div>
+    </div>
+
+    <script src="js/list.js"></script>
+
+    <script>
+        function saveMembershipData() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (firstName && lastName && email && password) {
+                const userInfo = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                };
+
+                localStorage.setItem('userInfo', JSON.stringify(userInfo));
+                alert('Membership Submitted.');
+
+                const isMemberResult = isMember();
+
+                return isMemberResult;
+
+            } else {
+                alert('please fill in all fields');
+                return false;
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

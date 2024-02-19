@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <!-- <link rel="shortcut icon" href="img/fav.png"> -->
+    <!-- Author Meta -->
+    <meta name="author" content="codepixer">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Profile</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!---------------CSS-------------------->
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.header h1 {
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    /* Fill remaining space vertically */
+    margin: 20px;
+}
+
+.sidebar {
+    width: 30%;
+    background-color: #333;
+    color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.profile-info img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile-info h2,
+.profile-info p {
+    margin: 0;
+    color: #fff;
+}
+
+.content {
+    flex: 1;
+    /* Fill remaining space horizontally */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.favorite-pictures img {
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+    </style>
+</head>
+
+<body onload="loadFavorites()">
+
+    <div class="header">
+        <h1>User Profile</h1>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile-info">
+
+                <img id="profile-photo" src="img/WhatsApp Image 2023-12-03 at 12.28.55 AM.jpeg" alt="Profile Photo" width="100">
+
+                <div id="displayedUserInfo" style="color: white;"></div>
+
+            </div>
+        </div>
+
+        <div class="content" style="display: grid; grid-template-rows: 1fr, 1fr, 1fr;">
+
+            <h3>Profile Information</h3>
+
+            <ul>
+                <li><strong>Name:</strong> <span id="profile-name"></span></li>
+                <li><strong>Surname:</strong> <span id="profile-surname"></span></li>
+                <li><strong>Age:</strong> <span id="profile-age"></span></li>
+                <li><strong>Mobile Number:</strong> <span id="profile-mobile-number"></span></li>
+                <li><strong>Address:</strong> <span id="profile-address"></span></li>
+                <li><strong>Email:</strong> <span id="profile-email"></span></li>
+                <li><strong>Nationality:</strong> <span id="profile-nationality"></span></li>
+                <li><strong>Gender:</strong> <span id="profile-gender"></span></li>
+            </ul>
+
+            <div class="favorite-pictures">
+
+                <h3>Favorite Pictures</h3>
+
+                <div id="photoList" style="display: flex; align-items: center; margin: 10px;"></div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Function 1: Display user information
+            const userInfoString = localStorage.getItem('userInfo');
+
+            if (userInfoString) {
+                const userInfo = JSON.parse(userInfoString);
+
+                document.getElementById('displayedUserInfo').innerHTML = `
+                <p style='color: white;'>${userInfo.firstName}\t${userInfo.lastName}</p>
+                <p>${userInfo.email}</p>
+            `;
+            }
+
+            // Function 2
+            const userDataString = localStorage.getItem('userData');
+
+            if(userDataString) {
+                const userData = JSON.parse(userDataString);
+
+                document.getElementById('profile-name').textContent = userData.name;
+                document.getElementById('profile-surname').textContent = userData.surname;
+                document.getElementById('profile-age').textContent = userData.age;
+                document.getElementById('profile-mobile-number').textContent = userData.mobilenumber;
+                document.getElementById('profile-address').textContent = userData.address;
+                document.getElementById('profile-email').textContent = userData.email;
+                document.getElementById('profile-nationality').textContent = userData.nationality;
+                document.getElementById('profile-gender').textContent = userData.gender;
+            }
+        });
+
+    </script>
+
+
+    <script src="js/list.js"></script>
+
+
+
+</body>
+
+</html>
